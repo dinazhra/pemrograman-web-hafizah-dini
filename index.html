@@ -3,17 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pupuk.qu</title>
+    <title>PupukKu</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header class="header">
-        <img src="logo pupuk.png" alt="Logo Pupuk" height="250px" width="150px">
-        <h1>AgroMart Pupuk</h1>
-        <h2>Sistem Informasi Manajemen Penjualan Pupuk</h2>
+        <h1>AgroMart PupukKu</h1>
+        <section class="form-section">
+            <label for="search">Cari Produk:</label>
+            <input type="search" id="search" placeholder="Cari pupuk...">
+            <button type="submit">Cari</button>
+        </section>
     </header>
 
     <nav class="navbar">
+        <img src="newlogo.png" alt="Logo Pupuk" height="200px">
         <ul class="nav-menu">
             <li><a href="beranda.html">Beranda</a></li>
             <li><a href="katalog.html">Katalog Produk</a></li>
@@ -24,22 +28,12 @@
 
     <main class="container">
         <section class="content">
-
             <section id="opening">
                 <h2>Selamat Datang di AgroMart Pupuk</h2>
                 <p>        
                     Agromart adalah platform penjualan pupuk yang menyediakan 
                     berbagai jenis pupuk berkualitas untuk kebutuhan pertanian anda. 
-                    Melalui website ini, pelanggan dapat melihat katalog pupuk, 
-                    melakukan pemesanan, dan memantau pesanan anda.
                 </p>
-            </section>
-
-            <section class="form-section">
-                <h3>Pencarian Produk</h3>
-                <label for="search">Cari Produk:</label>
-                <input type="text" placeholder="Cari pupuk...">
-                <button>Cari</button>
             </section>
 
             <section class="produk-grid">
@@ -109,6 +103,8 @@
                     </tbody>
                 </table>
             </section>
+
+        </section>
 
         <aside class="sidebar">
             <p>Ketersediaan Stok Pupuk:</p>
