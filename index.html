@@ -4,48 +4,113 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pupuk.qu</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body style="margin:0; font-family:Arial;">
-    <header style="text-align:center; padding:20px;">
-        <img src="logo pupuk.png" alt="Logo Pupuk" width="120px" height="170px">
+<body>
+    <header class="header">
+        <img src="logo pupuk.png" alt="Logo Pupuk" height="250px" width="150px">
         <h1>AgroMart Pupuk</h1>
         <h2>Sistem Informasi Manajemen Penjualan Pupuk</h2>
     </header>
 
-<style>
-    nav ul{
-        list-style: none;
-        padding: 0;
-    }
-    nav ul li{
-        display: inline;
-    }
-</style>
-    <nav style="background-color:#76944C; padding:10px; text-align:center;">
-    <ul>
-      <li><a href="beranda.html" style="color:black; margin:15px;"><strong>Beranda</strong></a></li>
-      <li><a href="katalog.html" style="color:black; margin:15px;"><strong>Katalog Produk</strong></a></li>
-      <li><a href="keranjang.html" style="color:black; margin:15px;"><strong>Keranjang</strong></a></li>
-      <li><a href="pesanan.html" style="color:black; margin:15px;"><strong>Pesanan Saya</strong></a></li>
-    </ul>
-  </nav>
+    <nav class="navbar">
+        <ul class="nav-menu">
+            <li><a href="beranda.html">Beranda</a></li>
+            <li><a href="katalog.html">Katalog Produk</a></li>
+            <li><a href="keranjang.html">Keranjang</a></li>
+            <li><a href="pesanan.html">Pesanan Saya</a></li>
+        </ul>
+    </nav>
 
-<main style="text-align:center; padding:20px;">
-    <section id="opening">
-        <h2>Selamat Datang di AgroMart Pupuk</h2>
+    <main class="container">
+        <section class="content">
 
-        <p style="width:60%; margin:auto;">        
-            Agromart adalah platform penjualan pupuk yang menyediakan 
-            berbagai jenis pupuk berkualitas untuk kebutuhan pertanian anda. 
-            Melalui website ini, pelanggan dapat melihat katalog pupuk, 
-            melakukan pemesanan, dan memantau pesanan anda.
-    </section>
+            <section id="opening">
+                <h2>Selamat Datang di AgroMart Pupuk</h2>
+                <p>        
+                    Agromart adalah platform penjualan pupuk yang menyediakan 
+                    berbagai jenis pupuk berkualitas untuk kebutuhan pertanian anda. 
+                    Melalui website ini, pelanggan dapat melihat katalog pupuk, 
+                    melakukan pemesanan, dan memantau pesanan anda.
+                </p>
+            </section>
 
-</main>
+            <section class="form-section">
+                <h3>Pencarian Produk</h3>
+                <label for="search">Cari Produk:</label>
+                <input type="text" placeholder="Cari pupuk...">
+                <button>Cari</button>
+            </section>
 
-    <sections>
-        <aside style="width:30%; background:#ffffff; padding:20px;">
+            <section class="produk-grid">
+                <article class="card">
+                    <img src="urea.png" alt="Pupuk Urea">
+                    <h4>Urea</h4>
+                    <p>Rp 100.000</p>
+                </article>
+                <article class="card">
+                    <img src="kompos.jpg" alt="Pupuk Urea">
+                    <h4>Kompos</h4>
+                    <p>Rp 80.000</p>
+                </article>
+                <article class="card">
+                    <img src="npk.webp" alt="Pupuk Urea">
+                    <h4>NPK</h4>
+                    <p>Rp 120.000</p>
+                </article>
+                <article class="card">
+                    <img src="kandang.jpg" alt="Pupuk Urea">
+                    <h4>Pupuk Kandang</h4>
+                    <p>Rp 70.000</p>
+                </article>
+            </section>
 
+            <section class="table-section">
+                <h3>Data Pupuk</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>Kategori</th>
+                            <th>Stok</th>
+                            <th>Harga</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Urea</td>
+                            <td>Kimia</td>
+                            <td>50</td>
+                            <td>Rp 100.000</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Kompos</td>
+                            <td>Organik</td>
+                            <td>30</td>
+                            <td>Rp 80.000</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>NPK</td>
+                            <td>Kimia</td>
+                            <td>40</td>
+                            <td>Rp120.000</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Pupuk Kandang</td>
+                            <td>Organik</td>
+                            <td>25</td>
+                            <td>Rp70.000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+        <aside class="sidebar">
             <p>Ketersediaan Stok Pupuk:</p>
             <progress value="80" max="100">80%</progress>
 
@@ -53,15 +118,23 @@
             <progress value="65" max="100">65%</progress>
 
             <p>Kepuasan Pelanggan:</p>
-            <meter value="4.2" min="0" max="5" low="2" high="4" optimum="5">4.2</meter>
+            <meter value="4.2" min="0" max="5"></meter>
+
+            <h3>Filter Kategori</h3>
+            <label><input type="checkbox"> Organik</label><br>
+            <label><input type="checkbox"> Kimia</label><br>
+            <label><input type="checkbox"> Cair</label>
 
             <h4><a href="contact.html">Contact</a></h4>
             <h4><a href="aboutus.html">More About Us</a></h4>
         </aside>
-    </sections>
+    </main>
 
-<footer style="text-align:center; padding:10px;">
-    <p>&copy; 2026 AgroMart</p>
-</footer>
+    <footer class="footer">
+        <p>&copy; 2026 AgroMart</p>
+        <p>Kontak: AgroMart@mail.com</p>
+        <p>Alamat: Jember</p>
+    </footer>
 
+</body>
 </html>
