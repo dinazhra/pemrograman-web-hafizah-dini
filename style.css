@@ -7,6 +7,8 @@
 body {
     font-family: 'Poppins', sans-serif;
     padding-top: 60px;
+    background: linear-gradient(to bottom, #eef7e0, #c8dfa0);
+    min-height: 100vh;
 }
 
 .header {
@@ -55,6 +57,21 @@ body {
     animation: fadeInDown 1s ease;
 }
 
+#opening {
+    background-color: rgba(255,255,255,0.5);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-left: 5px solid #76944C;
+}
+
+#opening h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #2f4f2f;
+}
+
 .navbar {
     position: fixed;
     top: 0;
@@ -66,12 +83,13 @@ body {
     background-color: #1e3a1e;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     gap: 120px;
+    animation: slideDown 0.6s ease;
 }
 
 .nav-menu {
     display: flex;
-    justify-content: center;
     list-style: none;
+    margin-left: auto;  
 }
 
 .nav-menu li {
@@ -99,6 +117,7 @@ body {
     padding-top: 80px;
     gap:20px;
     padding: 60px;
+    background: transparent; 
 }
 
 .content {
@@ -106,7 +125,7 @@ body {
     padding: 20px;
     width: 100%;
     flex: 3;
-    background: linear-gradient(to right, #e8f5d0, #a3c47c);
+    background: transparent;
     border-radius: 10px;
     color: #2f4f2f;
 }
@@ -138,6 +157,11 @@ body {
     transform: scale(1.05);
 }
 
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(50px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
 .sidebar {
     flex: 1;
     position: sticky;
@@ -147,6 +171,7 @@ body {
     background-color: #ffffff;
     border: 1px solid #d6e5c3;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    animation: slideInRight 0.8s ease;
 }
 
 .sidebar p {
@@ -166,6 +191,15 @@ body {
     position: relative;
     z-index: 1;
     animation: fadeInUp 1.2s ease;
+}
+
+.form-section label {
+    color: white !important;
+    font-weight: 600;
+    font-size: 15px;
+    text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.9);
+    position: relative;
+    z-index: 2;
 }
 
 .form-section input {
@@ -249,8 +283,11 @@ meter {
     margin-bottom: 10px;
     font-size: 15px;
     color: #2f4f2f;
-    border-bottom: 2px solid #a3c47c;
-    padding-bottom: 6px;
+    background-color: transparent;  
+    padding: 0 0 8px 0;
+    border-bottom: 2px solid #a3c47c;  
+    border-radius: 0;
+    font-weight: 700;
 }
 
 .sidebar label {
@@ -263,16 +300,69 @@ meter {
 
 .sidebar a {
     display: block;
-    margin-top: 10px;
-    color: #76944C;
+    margin-top: 8px;
+    padding: 8px 14px;
+    background-color: #e8f5d0;
+    color: #2f4f2f;
     font-weight: 600;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 13px;
+    border-radius: 8px;
+    border: 1px solid #a3c47c;
     transition: 0.3s;
+    text-align: center;
 }
 
 .sidebar a:hover {
-    color: #1e3a1e;
+    background-color: #76944C;
+    color:white;
+}
+
+.stat-item {
+    margin: 12px 0;
+}
+
+.stat-item p {
+    font-size: 12px;
+    color: #4a6741;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.stat-bar {
+    width: 100%;
+    height: 10px;
+    background-color: #e8f5d0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+@keyframes fillBar {
+    from { width: 0%; }
+}
+
+.stat-fill {
+    height: 100%;
+    border-radius: 10px;
+    transition: width 1s ease; 
+    animation: fillBar 1.5s ease forwards;
+}
+
+.stat-item:nth-child(2) .stat-fill {
+    background: #4a9e8c;
+}
+
+.stat-item:nth-child(3) .stat-fill {
+    background: #c8a830;
+}
+
+.stat-label {
+    font-size: 11px;
+    color: #76944C;
+    font-weight: 700;
+    margin-top: 3px;
+    display: block;
+    text-align: right;
 }
 
 .card {
@@ -365,9 +455,11 @@ tbody tr:hover {
     display: grid;
     grid-template-columns: 1fr;
     text-align: center;
-    padding: 10px;
-    background-color: #333;
-    color: white;
+    padding: 20px 40px;
+    background-color: #1e3a1e;
+    color: #e8f5d0;
+    font-size: 14px;
+    gap: 5px;
 }
 
 @media (max-width: 768px) {
