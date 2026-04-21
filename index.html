@@ -4,16 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PupukKu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header class="header">
         <h1>AgroMart PupukKu</h1>
-        <section class="form-section">
-            <label for="search">Cari Produk:</label>
-            <input type="search" id="search" placeholder="Cari pupuk...">
-            <button type="submit">Cari</button>
-        </section>
     </header>
 
     <nav class="navbar">
@@ -36,71 +32,49 @@
                 </p>
             </section>
 
-            <section class="produk-grid">
-                <article class="card">
-                    <img src="urea.png" alt="Pupuk Urea">
-                    <h4>Urea</h4>
-                    <p>Rp 100.000</p>
-                </article>
-                <article class="card">
-                    <img src="kompos.jpg" alt="Pupuk Urea">
-                    <h4>Kompos</h4>
-                    <p>Rp 80.000</p>
-                </article>
-                <article class="card">
-                    <img src="npk.webp" alt="Pupuk Urea">
-                    <h4>NPK</h4>
-                    <p>Rp 120.000</p>
-                </article>
-                <article class="card">
-                    <img src="kandang.jpg" alt="Pupuk Urea">
-                    <h4>Pupuk Kandang</h4>
-                    <p>Rp 70.000</p>
-                </article>
-            </section>
+            <div class="stats-row">
+                <div class="stat-card">
+                    <div class="stat-val" id="statTotal">0</div>
+                    <div class="stat-lbl">Total Produk</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-val" id="statNilai">Rp 0</div>
+                    <div class="stat-lbl">Total Nilai Inventaris</div>
+                </div>
+                <div class="stat-card warn">
+                    <div class="stat-val" id="statMenipis">0</div>
+                    <div class="stat-lbl">Stok Menipis (&lt;10)</div>
+                </div>
+            </div>
+
+            <div class="toolbar">
+                <input type="search" id="searchInput" placeholder="Cari nama atau kode produk...">
+                <select id="filterKategori">
+                    <option value="">Semua Kategori</option>
+                    <option value="Kimia">Kimia</option>
+                    <option value="Organik">Organik</option>
+                    <option value="Cair">Cair</option>
+                </select>
+                <button class="btn-tambah" id="btnTambah">+ Tambah Produk</button>
+            </div>
+
+            <section class="produk-grid" id="produkGrid"></section>
 
             <section class="table-section">
                 <h3>Data Pupuk</h3>
                 <table>
                     <thead>
                         <tr>
-                            <th>No</th>
+                            <th>Kode</th>
                             <th>Nama</th>
                             <th>Kategori</th>
                             <th>Stok</th>
                             <th>Harga</th>
+                            <th>Tanggal Masuk</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Urea</td>
-                            <td>Kimia</td>
-                            <td>50</td>
-                            <td>Rp 100.000</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Kompos</td>
-                            <td>Organik</td>
-                            <td>30</td>
-                            <td>Rp 80.000</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>NPK</td>
-                            <td>Kimia</td>
-                            <td>40</td>
-                            <td>Rp 120.000</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Pupuk Kandang</td>
-                            <td>Organik</td>
-                            <td>25</td>
-                            <td>Rp 70.000</td>
-                        </tr>
-                    </tbody>
+                    <tbody id="tabelBody"></tbody>
                 </table>
             </section>
 
@@ -113,8 +87,8 @@
                 <p>Ketersediaan Stok Pupuk</p>
                 <div class="stat-bar">
                     <div class="stat-fill" style="width: 80%; background: #76944C;"></div>
-            </div>
-            <span class="stat-label">80%</span>
+                </div>
+                <span class="stat-label">80%</span>
             </div>
 
             <div class="stat-item">
@@ -134,9 +108,9 @@
             </div>
 
             <h3>Filter Kategori</h3>
-            <label><input type="checkbox"> Organik</label><br>
-            <label><input type="checkbox"> Kimia</label><br>
-            <label><input type="checkbox"> Cair</label>
+            <label><input type="checkbox" value="Organik" class="cbFilter"> Organik</label><br>
+            <label><input type="checkbox" value="Kimia"   class="cbFilter"> Kimia</label><br>
+            <label><input type="checkbox" value="Cair"    class="cbFilter"> Cair</label>
 
             <h4><a href="contact.html">Contact</a></h4>
             <h4><a href="aboutus.html">More About Us</a></h4>
@@ -149,5 +123,58 @@
         <p>Alamat: Jember</p>
     </footer>
 
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <h2 id="modalTitle">+ Tambah Produk Baru</h2>
+
+            <div class="form-group">
+                <label>Kode Barang *</label>
+                <input type="text" id="fKode" placeholder="Contoh: PRD-001">
+                <span class="err" id="errKode">Kode barang wajib diisi dan harus unik</span>
+            </div>
+
+            <div class="form-group">
+                <label>Nama Produk *</label>
+                <input type="text" id="fNama" placeholder="Nama pupuk">
+                <span class="err" id="errNama">Nama produk wajib diisi</span>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Kategori *</label>
+                    <select id="fKategori">
+                        <option value="">-- Pilih --</option>
+                        <option value="Kimia">Kimia</option>
+                        <option value="Organik">Organik</option>
+                        <option value="Cair">Cair</option>
+                    </select>
+                    <span class="err" id="errKategori">Kategori wajib dipilih</span>
+                </div>
+                <div class="form-group">
+                    <label>Stok *</label>
+                    <input type="number" id="fStok" min="0" placeholder="0">
+                    <span class="err" id="errStok">Stok wajib diisi (minimal >0)</span>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Harga (Rp) *</label>
+                    <input type="number" id="fHarga" min="1" placeholder="0">
+                    <span class="err" id="errHarga">Harga wajib diisi (minimal > Rp 0)</span>
+                </div>
+                <div class="form-group">
+                    <label>Tanggal Masuk *</label>
+                    <input type="date" id="fTanggal">
+                    <span class="err" id="errTanggal">Tanggal masuk wajib diisi</span>
+                </div>
+            </div>
+
+            <button class="btn-submit" id="btnSimpan">Simpan</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
